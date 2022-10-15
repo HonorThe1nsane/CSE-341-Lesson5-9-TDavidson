@@ -89,7 +89,7 @@ const createNewPerson = async (req, res) => {
         email: req.body.email,
         birthday: req.body.birthday
     };
-    const response = await mongodb.getDb().db().collection('person').insertOne(car);
+    const response = await mongodb.getDb().db().collection('person').insertOne(person);
     if (response.acknowledged) {
         res.status(201).json(response);
     } else {

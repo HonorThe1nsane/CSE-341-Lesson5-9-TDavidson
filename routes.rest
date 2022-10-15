@@ -8,7 +8,7 @@ GET http://localhost:8080/person
 
 ###Single requests
 
-GET http://localhost:8080/Hot-cars/634a3883807a38278e2408c9
+GET http://localhost:8080/cars/634b1d65bc63e2844311f703
 
 
 ### Create cars
@@ -17,7 +17,7 @@ content-type: application/json
 
 {
         "carMake": "Dodge",
-        "carModel": "Challenger",
+        "carModel": "Charger",
         "engineSize": "170 cu in (2.8 L)",
         "color": "Grey",
         "year": "1969",
@@ -26,15 +26,14 @@ content-type: application/json
 
 
 ###Create person
-POST http://localhost:8080/cars HTTP/1.1
+POST http://localhost:8080/person HTTP/1.1
 content-type: application/json
-{
 
+{
         "firstName": "Dennis",
         "lastName": "Davidson",
         "email": "dad@test.com",
         "birthday": "12/17/1980"
-
 }
 
 ### PUT cars
@@ -51,8 +50,9 @@ content-type: application/json
 }
 
 ### PUT person
-PUT http://localhost:8080/cars/634b1f3d807a38278e2408d7 HTTP/1.1
+PUT http://localhost:8080/person/634b1f3d807a38278e2408d7 HTTP/1.1
 content-type: application/json
+
 {
 
         "firstName": "Dennis",
@@ -66,7 +66,7 @@ content-type: application/json
 DELETE http://localhost:8080/cars/634a3883807a38278e2408c9 HTTP/1.1
 
 #### DELETE person
-DELETE http://localhost:8080/person/634b1f3d807a38278e2408d7 HTTP/1.1
+DELETE http://localhost:8080/person/634b39237b249f67844184ba HTTP/1.1
 
 
 
@@ -74,17 +74,18 @@ DELETE http://localhost:8080/person/634b1f3d807a38278e2408d7 HTTP/1.1
 ###Render PRODUCTION ############################
 
 
-GET https://cse-341-personal-assignments-troy-d.onrender.com/cars
+GET https://webbackend-l5-9.onrender.com/cars
 # the request above returns a json object with all cars information from data
 
 
-###Single requests
+###
 
-GET https://cse-341-personal-assignments-troy-d.onrender.com/cars/634a3883807a38278e2408c9
+GET https://webbackend-l5-9.onrender.com/person
+#gets all persons in my databas.
 
 
 ### Create cars
-POSThttps://cse-341-personal-assignments-troy-d.onrender.com/carss HTTP/1.1
+POST https://webbackend-l5-9.onrender.com/cars HTTP/1.1
 content-type: application/json
 
 {
@@ -99,7 +100,7 @@ content-type: application/json
 
 
 ### PUT cars
-PUThttps://cse-341-personal-assignments-troy-d.onrender.com/cars/633b860bf1ca7e3a1f473ae6 HTTP/1.1
+PUT https://cse-341-personal-assignments-troy-d.onrender.com/cars/633b860bf1ca7e3a1f473ae6 HTTP/1.1
 content-type: application/json
 
 {
@@ -111,4 +112,4 @@ content-type: application/json
         "price": "24673"
 }
 ### DELETE cars
-DELETEhttps://cse-341-personal-assignments-troy-d.onrender.com/cars/633b844a2ffdf3c327b3dc9c HTTP/1.1
+DELETE https://cse-341-personal-assignments-troy-d.onrender.com/cars/633b844a2ffdf3c327b3dc9c HTTP/1.1
