@@ -12,7 +12,7 @@ GET http://localhost:8080/Hot-cars/634a3883807a38278e2408c9
 
 
 ### Create cars
-POST http://localhost:8080/Hot-cars HTTP/1.1
+POST http://localhost:8080/cars HTTP/1.1
 content-type: application/json
 
 {
@@ -25,9 +25,20 @@ content-type: application/json
 }
 
 
+###Create person
+POST http://localhost:8080/cars HTTP/1.1
+content-type: application/json
+{
+
+        "firstName": "Dennis",
+        "lastName": "Davidson",
+        "email": "dad@test.com",
+        "birthday": "12/17/1980"
+
+}
 
 ### PUT cars
-PUT http://localhost:8080/Hot-cars/634b1d65bc63e2844311f703 HTTP/1.1
+PUT http://localhost:8080/cars/634b1d65bc63e2844311f703 HTTP/1.1
 content-type: application/json
 
 {
@@ -38,8 +49,24 @@ content-type: application/json
         "year": "1966",
         "price": "44900"
 }
+
+### PUT person
+PUT http://localhost:8080/cars/634b1f3d807a38278e2408d7 HTTP/1.1
+content-type: application/json
+{
+
+        "firstName": "Dennis",
+        "lastName": "Davidson",
+        "email": "dad@test.com",
+        "birthday": "12/17/1980"
+
+
+}
 ### DELETE car
-DELETE http://localhost:8080/Hot-cars/634a3883807a38278e2408c9 HTTP/1.1
+DELETE http://localhost:8080/cars/634a3883807a38278e2408c9 HTTP/1.1
+
+#### DELETE person
+DELETE http://localhost:8080/person/634b1f3d807a38278e2408d7 HTTP/1.1
 
 
 
