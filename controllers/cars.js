@@ -7,7 +7,7 @@ const { cars } = require('../models');
 const db = require('../models');
 const Cars = db.cars;
 
-const apiKey = 'WD1iqsbf6aEgjm4AToTiLv51TvwUvfGqcsJj6vIWJ4teKQOtiD3E475XsxbLA2tR';
+const apiKey = 'KZ9u3ZO4cT5W3nf6HnZc17aYwskqCymnVpqSqo32JJYx3qFqXsCOlwxZXKnSbHDK';
 
 
 const getData = async (req, res) => {
