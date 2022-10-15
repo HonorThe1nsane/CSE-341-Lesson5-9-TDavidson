@@ -1,5 +1,5 @@
 module.exports = (mongoose) => {
-    const Car = mongoose.model(
+    const Cars = mongoose.model(
         'car',
         mongoose.Schema(
             {
@@ -8,11 +8,11 @@ module.exports = (mongoose) => {
                 engineSize: String,
                 color: String,
                 year: String,
-                price: String
+                price: String,
             },
             { timestamps: true }
         )
     );
-    return Car;
+    return Cars;
 };
 

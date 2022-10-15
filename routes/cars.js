@@ -1,19 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const contactsController = require('../controllers/cars');
+const carsController = require('../controllers/cars');
 
 
 // GET /feed/posts
 
-router.get('/', contactsController.getData);
+router.get('/', carsController.getData);
 
-router.get('/:id', contactsController.getSingleData);
+router.get('/:id', carsController.getSingleData);
 
-router.post('/', contactsController.createNewCar);
+router.post('/', carsController.createNewCar);
 
-router.put('/:id', contactsController.updateCar);
+router.put('/:id', carsController.updateCar);
 
-router.delete('/:id', contactsController.deleteCar);
+router.delete('/:id', carsController.deleteCar);
 // localhost:8080
 module.exports = router;
 
