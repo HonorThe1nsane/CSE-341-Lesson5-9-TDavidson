@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 
-router.use('/cars', require('./cars'));
+router.use('/Hot-cars', require('./cars'));
 router.use('/', require('./swagger'));
 
 module.exports = router;

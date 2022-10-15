@@ -5,7 +5,7 @@ const mongodb = require('../db/connect');
 const { car } = require('../models');
 
 const db = require('../models');
-const Cars = db.car;
+const Car = db.car;
 
 const apiKey = 'KZ9u3ZO4cT5W3nf6HnZc17aYwskqCymnVpqSqo32JJYx3qFqXsCOlwxZXKnSbHDK';
 
@@ -24,7 +24,7 @@ exports.findAll = (req, res) => {
 
     console.log(req.header('apiKey'));
     if (req.header('apiKey') === apiKey) {
-        Cars.find(
+        Car.find(
             {},
             {
                 carMake: 1,
@@ -66,7 +66,7 @@ exports.getSingleData = (req, res) => {
     const id = new ObjectId(req.params.id);
     console.log(id);
     if (req.header('apiKey') === apiKey) {
-        Cars.find({ _id: id })
+        Car.find({ _id: id })
             .then((data) => {
                 if (!data)
                     res
@@ -156,7 +156,7 @@ exports.update = (req, res) => {
 
     const id = new ObjectId(req.params.id);
 
-    Cars.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Car.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then((data) => {
             if (!data) {
                 res.status(404).send({

@@ -25,7 +25,7 @@ content-type: application/json
 
 
 ### PUT cars
-PUT http://localhost:8080/Hot-cars/634a3883807a38278e2408c9 HTTP/1.1
+PUT http://localhost:8080/Hot-cars/634b1d65bc63e2844311f703 HTTP/1.1
 content-type: application/json
 
 {
@@ -33,10 +33,10 @@ content-type: application/json
         "carModel": "Bronco II",
         "engineSize": "170 cu in (2.8 L)",
         "color": "Maroon",
-        "year": "1965",
+        "year": "1966",
         "price": "44900"
 }
-### DELETE ca
+### DELETE car
 DELETE http://localhost:8080/Hot-cars/634a3883807a38278e2408c9 HTTP/1.1
 
 
@@ -51,7 +51,7 @@ GET https://cse-341-personal-assignments-troy-d.onrender.com/cars
 
 ###Single requests
 
-GET https://cse-341-personal-assignments-troy-d.onrender.com/cars/632ff12d7419b9a97ed58cf9
+GET https://cse-341-personal-assignments-troy-d.onrender.com/cars/634a3883807a38278e2408c9
 
 
 ### Create cars
