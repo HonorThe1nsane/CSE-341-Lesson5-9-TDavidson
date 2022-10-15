@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "My API",
-        "description": "Person API",
+        "description": "Cars API",
         "version": "1.0.0"
     },
     "host": "localhost:8080",
@@ -18,7 +18,7 @@
                 "responses": {}
             }
         },
-        "/Cars/": {
+        "/Hot-cars/": {
             "get": {
                 "description": "",
                 "parameters": [
@@ -81,7 +81,7 @@
                 }
             }
         },
-        "/Cars/{id}": {
+        "/Hot-cars/{id}": {
             "get": {
                 "description": "",
                 "produces": [

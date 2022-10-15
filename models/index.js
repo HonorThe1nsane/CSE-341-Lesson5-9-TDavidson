@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 
 const db = {};
 db.mongoose = mongoose;
-//db.url = dbConfig.url;
-db.person = require('./cars.js')(mongoose);
+db.url = dbConfig.url;
+db.car = require('./cars.js')(mongoose);
 
 module.exports = db;

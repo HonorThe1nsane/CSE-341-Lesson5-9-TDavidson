@@ -2,10 +2,10 @@
 const ObjectId = require('mongodb').ObjectId;
 
 const mongodb = require('../db/connect');
-const { cars } = require('../models');
+const { car } = require('../models');
 
 const db = require('../models');
-const Cars = db.cars;
+const Cars = db.car;
 
 const apiKey = 'KZ9u3ZO4cT5W3nf6HnZc17aYwskqCymnVpqSqo32JJYx3qFqXsCOlwxZXKnSbHDK';
 
@@ -66,12 +66,12 @@ exports.getSingleData = (req, res) => {
     const id = new ObjectId(req.params.id);
     console.log(id);
     if (req.header('apiKey') === apiKey) {
-        Person.find({ _id: id })
+        Cars.find({ _id: id })
             .then((data) => {
                 if (!data)
                     res
                         .status(404)
-                        .send({ message: 'Not car found  with id ' + id });
+                        .send({ message: 'No car found with id ' + id });
                 else res.send(data[0]);
             })
             .catch((err) => {
@@ -93,7 +93,7 @@ const createNewCar = async (req, res) => {
         year: req.body.year,
         price: req.body.price
     };
-    const response = await mongodb.getDb().db().collection('car').insertOne(car);
+    const response = await mongodb.getDb().db().collection('cars').insertOne(car);
     if (response.acknowledged) {
         res.status(201).json(response);
     } else {
@@ -130,7 +130,7 @@ const updateCar = async (req, res) => {
         });
     }
     const userId = new ObjectId(req.params.id);
-    const person = {
+    const car = {
         carMake: req.body.carMake,
         carModel: req.body.carModel,
         engineSize: req.body.engineSize,
@@ -138,7 +138,7 @@ const updateCar = async (req, res) => {
         year: req.body.year,
         price: req.body.price
     };
-    const response = await mongodb.getDb().db().collection('people').replaceOne({ _id: userId }, car);
+    const response = await mongodb.getDb().db().collection('cars').replaceOne({ _id: userId }, car);
     console.log(response);
     if (response.modifiedCount > 0) {
         res.status(204).send();
@@ -175,7 +175,7 @@ exports.update = (req, res) => {
 //Rest client
 const deleteCar = async (req, res) => {
     const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db().collection('people').remove({ _id: userId }, true);
+    const response = await mongodb.getDb().db().collection('cars').remove({ _id: userId }, true);
     console.log(response);
     if (response.deletedCount > 0) {
         res.status(204).send();
