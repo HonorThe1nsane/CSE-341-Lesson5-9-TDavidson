@@ -7,5 +7,6 @@ const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.car = require('./cars.js')(mongoose);
+db.person = require('./person.js')(mongoose);
 
 module.exports = db;
