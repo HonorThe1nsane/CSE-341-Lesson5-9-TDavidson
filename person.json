@@ -1,0 +1,20 @@
+{
+    "person": {
+        "firstName": "Troy",
+        "lastName": "Davidson",
+        "email": "tdawg@test.com",
+        "birthday": "12/26/1980"
+    },
+    "person2": {
+        "firstName": "Harmony",
+        "lastName": "Davidson",
+        "email": "hottiemama@test.com",
+        "birthday": "12/17/1980"
+    },
+    "person3": {
+        "firstName": "Hyrum",
+        "lastName": "Davidson",
+        "email": "hdawgkid@test.com",
+        "birthday": "03/05/1980"
+    }
+}
