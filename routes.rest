@@ -1,16 +1,16 @@
 
 
-GET http://localhost:8080/carss
+GET http://localhost:8080/Hot-cars
 # the request above returns a json object with all cars information from data
 
 
 ###Single requests
 
-GET http://localhost:8080/carss/633b860bf1ca7e3a1f473ae6
+GET http://localhost:8080/Hot-cars/634a3883807a38278e2408c9
 
 
 ### Create cars
-POST http://localhost:8080/carss HTTP/1.1
+POST http://localhost:8080/Hot-cars HTTP/1.1
 content-type: application/json
 
 {
@@ -25,19 +25,19 @@ content-type: application/json
 
 
 ### PUT cars
-PUT http://localhost:8080/cars/633b860bf1ca7e3a1f473ae6 HTTP/1.1
+PUT http://localhost:8080/Hot-cars/634a3883807a38278e2408c9 HTTP/1.1
 content-type: application/json
 
 {
         "carMake": "Ford",
-        "carModel": "Bronco",
+        "carModel": "Bronco II",
         "engineSize": "170 cu in (2.8 L)",
         "color": "Maroon",
         "year": "1965",
         "price": "44900"
 }
 ### DELETE ca
-DELETE http://localhost:8080/cars/632ff12d7419b9a97ed58cfb HTTP/1.1
+DELETE http://localhost:8080/Hot-cars/634a3883807a38278e2408c9 HTTP/1.1
 
 
 
