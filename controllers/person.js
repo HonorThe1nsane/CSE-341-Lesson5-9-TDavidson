@@ -2,16 +2,16 @@
 const ObjectId = require('mongodb').ObjectId;
 
 const mongodb = require('../db/connect');
-const { car } = require('../models');
+const { person } = require('../models');
 
 const db = require('../models');
-const Car = db.car;
+const Person = db.person;
 
 const apiKey = 'KZ9u3ZO4cT5W3nf6HnZc17aYwskqCymnVpqSqo32JJYx3qFqXsCOlwxZXKnSbHDK';
 
 
 const getData = async (req, res) => {
-    const result = await mongodb.getDb().db().collection('cars').find();
+    const result = await mongodb.getDb().db().collection('person').find();
     result.toArray().then((lists) => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(lists);
@@ -24,15 +24,13 @@ exports.findAll = (req, res) => {
 
     console.log(req.header('apiKey'));
     if (req.header('apiKey') === apiKey) {
-        Car.find(
+        Person.find(
             {},
             {
-                carMake: 1,
-                carModel: 1,
-                engineSize: 1,
-                color: 1,
-                year: 1,
-                price: 1,
+                firstName: 1,
+                lastName: 1,
+                email: 1,
+                birthday: 1,
                 _id: 0,
             }
         )
@@ -42,7 +40,7 @@ exports.findAll = (req, res) => {
             .catch((err) => {
                 res.status(500).send({
                     message:
-                        err.message || 'Some error occurred while retrieving cars.',
+                        err.message || 'Some error occurred while retrieving this person.',
                 });
             });
     } else {
@@ -52,7 +50,7 @@ exports.findAll = (req, res) => {
 //rest client function
 const getSingleData = async (req, res) => {
     const userId = new ObjectId(req.params.id);
-    const result = await mongodb.getDb().db().collection('cars').find({ _id: userId });
+    const result = await mongodb.getDb().db().collection('person').find({ _id: userId });
     result.toArray().then((lists) => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(lists[0]);
@@ -66,17 +64,17 @@ exports.getSingleData = (req, res) => {
     const id = new ObjectId(req.params.id);
     console.log(id);
     if (req.header('apiKey') === apiKey) {
-        Car.find({ _id: id })
+        Person.find({ _id: id })
             .then((data) => {
                 if (!data)
                     res
                         .status(404)
-                        .send({ message: 'No car found with id ' + id });
+                        .send({ message: 'No car person with id ' + id });
                 else res.send(data[0]);
             })
             .catch((err) => {
                 res.status(500).send({
-                    message: 'Error retrieving car with id=' + id,
+                    message: 'Error retrieving person with id=' + id,
                 });
             });
     } else {
@@ -84,34 +82,30 @@ exports.getSingleData = (req, res) => {
     }
 };
 // rest client
-const createNewCar = async (req, res) => {
-    const car = {
-        carMake: req.body.carMake,
-        carModel: req.body.carModel,
-        engineSize: req.body.engineSize,
-        favoriteColor: req.body.favoriteColor,
-        year: req.body.year,
-        price: req.body.price
+const createNewPerson = async (req, res) => {
+    const person = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        birthday: req.body.birthday
     };
-    const response = await mongodb.getDb().db().collection('cars').insertOne(car);
+    const response = await mongodb.getDb().db().collection('person').insertOne(car);
     if (response.acknowledged) {
         res.status(201).json(response);
     } else {
-        res.status(500).json(response.error || 'Some error occurred while creating the car.');
+        res.status(500).json(response.error || 'Some error occurred while creating the person.');
     }
 };
 //work with swagger
-exports.createNewCar = (req, res) => {
-    const car = {
-        carMake: req.body.carMake,
-        carModel: req.body.carModel,
-        engineSize: req.body.engineSize,
-        favoriteColor: req.body.favoriteColor,
-        year: req.body.year,
-        price: req.body.price
+exports.createNewPerson = (req, res) => {
+    const person = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        birthday: req.body.birthday
     };
     car
-        .save(car)
+        .save(person)
         .then((data) => {
             res.send(data);
         })
@@ -123,27 +117,25 @@ exports.createNewCar = (req, res) => {
         });
 };
 //rest client function
-const updateCar = async (req, res) => {
+const updatePerson = async (req, res) => {
     if (!req.body) {
         return res.status(400).send({
             message: 'Data to update can not be empty!',
         });
     }
     const userId = new ObjectId(req.params.id);
-    const car = {
-        carMake: req.body.carMake,
-        carModel: req.body.carModel,
-        engineSize: req.body.engineSize,
-        favoriteColor: req.body.favoriteColor,
-        year: req.body.year,
-        price: req.body.price
+    const person = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        birthday: req.body.birthday
     };
-    const response = await mongodb.getDb().db().collection('cars').replaceOne({ _id: userId }, car);
+    const response = await mongodb.getDb().db().collection('person').replaceOne({ _id: userId }, person);
     console.log(response);
     if (response.modifiedCount > 0) {
         res.status(204).send();
     } else {
-        res.status(500).json(response.error || 'Some error occurred while updating the car in Hot-cars.');
+        res.status(500).json(response.error || 'Some error occurred while updating the person in Hot-cars.');
     }
 };
 //swagger
@@ -156,31 +148,31 @@ exports.update = (req, res) => {
 
     const id = new ObjectId(req.params.id);
 
-    Car.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Person.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then((data) => {
             if (!data) {
                 res.status(404).send({
-                    message: `Cannot update Car with id=${id}. Maybe the car was not found!`,
+                    message: `Cannot update Person with id=${id}. Maybe the person was not found!`,
                 });
-            } else res.send({ message: 'Car was updated successfully.' });
+            } else res.send({ message: 'Person was updated successfully.' });
         })
         .catch((err) => {
             res.status(500).send({
-                message: 'Error updating Car with id=' + id,
+                message: 'Error updating Person with id=' + id,
             });
         });
 };
 
 
 //Rest client
-const deleteCar = async (req, res) => {
+const deletePerson = async (req, res) => {
     const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db().collection('cars').remove({ _id: userId }, true);
+    const response = await mongodb.getDb().db().collection('person').remove({ _id: userId }, true);
     console.log(response);
     if (response.deletedCount > 0) {
         res.status(204).send();
     } else {
-        res.status(500).json(response.error || 'Some error occurred while deleting the car.');
+        res.status(500).json(response.error || 'Some error occurred while deleting the person.');
     }
 };
 
@@ -190,23 +182,23 @@ const deleteCar = async (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Cars.findByIdAndRemove(id)
+    Person.findByIdAndRemove(id)
         .then((data) => {
             if (!data) {
                 res.status(404).send({
-                    message: `Cannot delete Car with id=${id}. Maybe the car was not found!`,
+                    message: `Cannot delete Person with id=${id}. Maybe the car was not found!`,
                 });
             } else {
                 res.send({
-                    message: 'Car was deleted successfully!',
+                    message: 'Person was deleted successfully!',
                 });
             }
         })
         .catch((err) => {
             res.status(500).send({
-                message: 'Could not delete Car with id=' + id,
+                message: 'Could not delete Person with id=' + id,
             });
         });
 };
 
-module.exports = { getSingleData, getData, createNewCar, updateCar, deleteCar };
+module.exports = { getSingleData, getData, createNewPerson, updatePerson, deletePerson };
