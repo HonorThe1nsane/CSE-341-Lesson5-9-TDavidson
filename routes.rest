@@ -1,7 +1,9 @@
 
 
-GET http://localhost:8080/Hot-cars
+GET http://localhost:8080/cars
 # the request above returns a json object with all cars information from data
+### Get person
+GET http://localhost:8080/person
 
 
 ###Single requests
