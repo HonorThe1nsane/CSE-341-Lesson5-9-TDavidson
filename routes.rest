@@ -1,0 +1,85 @@
+
+
+GET http://localhost:8080/carss
+# the request above returns a json object with all cars information from data
+
+
+###Single requests
+
+GET http://localhost:8080/carss/633b860bf1ca7e3a1f473ae6
+
+
+### Create cars
+POST http://localhost:8080/carss HTTP/1.1
+content-type: application/json
+
+{
+        "carMake": "Dodge",
+        "carModel": "Challenger",
+        "engineSize": "170 cu in (2.8 L)",
+        "color": "Grey",
+        "year": "1969",
+        "price": "24673"
+}
+
+
+
+### PUT cars
+PUT http://localhost:8080/cars/633b860bf1ca7e3a1f473ae6 HTTP/1.1
+content-type: application/json
+
+{
+        "carMake": "Ford",
+        "carModel": "Bronco",
+        "engineSize": "170 cu in (2.8 L)",
+        "color": "Maroon",
+        "year": "1965",
+        "price": "44900"
+}
+### DELETE ca
+DELETE http://localhost:8080/cars/632ff12d7419b9a97ed58cfb HTTP/1.1
+
+
+
+
+###Render PRODUCTION ############################
+
+
+GET https://cse-341-personal-assignments-troy-d.onrender.com/cars
+# the request above returns a json object with all cars information from data
+
+
+###Single requests
+
+GET https://cse-341-personal-assignments-troy-d.onrender.com/cars/632ff12d7419b9a97ed58cf9
+
+
+### Create cars
+POSThttps://cse-341-personal-assignments-troy-d.onrender.com/carss HTTP/1.1
+content-type: application/json
+
+{
+        "carMake": "Dodge",
+        "carModel": "Challenger",
+        "engineSize": "170 cu in (2.8 L)",
+        "color": "Grey",
+        "year": "1969",
+        "price": "24673"
+}
+
+
+
+### PUT cars
+PUThttps://cse-341-personal-assignments-troy-d.onrender.com/cars/633b860bf1ca7e3a1f473ae6 HTTP/1.1
+content-type: application/json
+
+{
+        "carMake": "Dodge",
+        "carModel": "Challenger",
+        "engineSize": "170 cu in (2.8 L)",
+        "color": "Grey",
+        "year": "1969",
+        "price": "24673"
+}
+### DELETE cars
+DELETEhttps://cse-341-personal-assignments-troy-d.onrender.com/cars/633b844a2ffdf3c327b3dc9c HTTP/1.1
