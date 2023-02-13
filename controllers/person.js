@@ -4,6 +4,7 @@ const ObjectId = require('mongodb').ObjectId;
 const mongodb = require('../db/connect');
 const { person } = require('../models');
 
+
 const db = require('../models');
 const Person = db.person;
 
@@ -200,5 +201,7 @@ exports.delete = (req, res) => {
             });
         });
 };
+
+
 
 module.exports = { getSingleData, getData, createNewPerson, updatePerson, deletePerson };

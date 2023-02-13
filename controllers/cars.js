@@ -1,7 +1,8 @@
 
 const ObjectId = require('mongodb').ObjectId;
 
-const { check } = require('express-validator');
+
+
 const mongodb = require('../db/connect');
 const { car } = require('../models');
 
@@ -212,13 +213,6 @@ exports.delete = (req, res) => {
 
 
 
-exports.carValidator = [
-    check('carMake', 'carMake is required').not().isEmpty(),
-    check('carModel', 'carModel is required').not().isEmpty(),
-    check('engineSize', 'engineSize is required').not().isEmpty(),
-    check('color', 'color is required').not().isEmpty(),
-    check('year', 'year is required').not().isEmpty(),
-    check('price', 'price is required').not().isEmpty(),
-];
+
 
 module.exports = { getSingleData, getData, createNewCar, updateCar, deleteCar };
