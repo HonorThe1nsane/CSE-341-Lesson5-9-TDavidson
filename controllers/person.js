@@ -3,6 +3,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 const mongodb = require('../db/connect');
 const { person } = require('../models');
+const { personValidation } = require('./validation');
 
 
 const db = require('../models');
@@ -84,6 +85,7 @@ exports.getSingleData = (req, res) => {
 };
 // rest client
 const createNewPerson = async (req, res) => {
+    personValidation(req, res, async () => {
     const person = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -92,10 +94,11 @@ const createNewPerson = async (req, res) => {
     };
     const response = await mongodb.getDb().db().collection('person').insertOne(person);
     if (response.acknowledged) {
-        res.status(201).json(response);
+        res.status(201).json(response) || 'Person created successfully';
     } else {
         res.status(500).json(response.error || 'Some error occurred while creating the person.');
-    }
+    };
+});
 };
 //work with swagger
 exports.createNewPerson = (req, res) => {
