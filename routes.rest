@@ -16,10 +16,10 @@ POST http://localhost:8080/cars HTTP/1.1
 content-type: application/json
 
 {
-        "carMake": "",
-        "carModel": "" ,
+        "carMake": " ",
+        "carModel": " "  ,
         "engineSize": "170 cu in (2.8 L)",
-        "color": "Grey",
+        "color": "Blue",
         "year": "1969",
         "price": "24673"
 }
@@ -55,7 +55,7 @@ content-type: application/json
 
 {
 
-        "firstName": "Dennis",
+        "firstName": "",
         "lastName": "Davidson",
         "email": "dad@test.com",
         "birthday": "12/17/1980"

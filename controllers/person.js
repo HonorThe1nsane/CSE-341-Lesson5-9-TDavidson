@@ -94,7 +94,7 @@ const createNewPerson = async (req, res) => {
     };
     const response = await mongodb.getDb().db().collection('person').insertOne(person);
     if (response.acknowledged) {
-        res.status(201).json(response) || 'Person created successfully';
+        res.status(201).json(response || 'Person created successfully');
     } else {
         res.status(500).json(response.error || 'Some error occurred while creating the person.');
     };

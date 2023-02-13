@@ -5,7 +5,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 const mongodb = require('../db/connect');
 // const { car } = require('../models');
-const { carValidator } = require('./validation');
+const { carValidation } = require('./validation');
 
 
 const db = require('../models');
@@ -89,7 +89,7 @@ exports.getSingleData = (req, res) => {
 };
 // rest client
 const createNewCar = async (req, res) => {
-    carValidator(req, res, async () => {
+    carValidation(req, res, async () => {
         const car = {
             carMake: req.body.carMake,
             carModel: req.body.carModel,
@@ -101,7 +101,7 @@ const createNewCar = async (req, res) => {
 
         const response = await mongodb.getDb().db().collection('cars').insertOne(car);
         if (response.acknowledged) {
-            res.status(201).json(response) || 'Car created successfully';
+            res.status(201).json(response || 'Car created successfully');
         } else {
             res.status(500).json(response.error || 'Some error occurred while creating the car.');
         }

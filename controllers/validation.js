@@ -8,7 +8,7 @@ exports.personValidation = (req, res, next) => {
     next();
 };
 
-exports.carValidator = (req, res, next) => {
+exports.carValidation = (req, res, next) => {
     check('carMake', 'carMake is required').not().isEmpty();
     check('carModel', 'carModel is required').not().isEmpty();
     check('engineSize', 'engineSize is required').not().isEmpty();
