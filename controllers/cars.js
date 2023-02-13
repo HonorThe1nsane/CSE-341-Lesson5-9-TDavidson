@@ -4,7 +4,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 const mongodb = require('../db/connect');
-// const { car } = require('../models');
+const { car } = require('../models');
 const { carValidation } = require('./validation');
 
 
@@ -109,26 +109,22 @@ const createNewCar = async (req, res) => {
 };
 //work with swagger
 exports.createNewCar = (req, res) => {
-    const car = {
-        carMake: req.body.carMake,
-        carModel: req.body.carModel,
-        engineSize: req.body.engineSize,
-        favoriteColor: req.body.favoriteColor,
-        year: req.body.year,
-        price: req.body.price
-    };
-    carValidator(req, res, () => {
-        car
-            .save(car)
-            .then((data) => {
-                res.send(data);
-            })
-            .catch((err) => {
-                res.status(500).send({
-                    message:
-                        err.message || 'Some error occurred while creating the car.',
-                });
-            });
+    carValidation(req, res, async () => {
+        const car = {
+            carMake: req.body.carMake,
+            carModel: req.body.carModel,
+            engineSize: req.body.engineSize,
+            favoriteColor: req.body.favoriteColor,
+            year: req.body.year,
+            price: req.body.price
+        };
+
+        const response = await mongodb.getDb().db().collection('cars').insertOne(car);
+        if (response.acknowledged) {
+            res.status(201).json(response || 'Car created successfully');
+        } else {
+            res.status(500).json(response.error || 'Some error occurred while creating the car.');
+        }
     });
 };
 //rest client function
