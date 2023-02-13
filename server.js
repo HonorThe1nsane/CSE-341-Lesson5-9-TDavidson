@@ -1,4 +1,4 @@
-const express = require('express');
+
 const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
 const MongoClient = require('mongodb').MongoClient;
@@ -16,6 +16,7 @@ const app = express();
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
+const { carValidator, personValidation } = require('./controllers/validation');
 
 app
     .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))

@@ -4,7 +4,9 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 const mongodb = require('../db/connect');
-const { car } = require('../models');
+// const { car } = require('../models');
+const {carValidation} = require('./validation');
+const { personValidation } = require('./validation');
 
 const db = require('../models');
 const Car = db.car;

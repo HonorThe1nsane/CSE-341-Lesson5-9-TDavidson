@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const personController = require('../controllers/person');
+// import { personValidation } from '../controllers/validation';
+// const personValidation = require('../controllers/validation');
 
 
 // GET /feed/posts
@@ -9,7 +11,7 @@ router.get('/', personController.getData);
 
 router.get('/:id', personController.getSingleData);
 
-router.post('/', personController.createNewPerson);
+router.post('/',  personController.createNewPerson);
 
 router.put('/:id', personController.updatePerson);
 
