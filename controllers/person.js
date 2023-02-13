@@ -102,23 +102,20 @@ const createNewPerson = async (req, res) => {
 };
 //work with swagger
 exports.createNewPerson = (req, res) => {
-    const person = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        birthday: req.body.birthday
+    personValidation(req, res, async () => {
+        const person = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            birthday: req.body.birthday
+        };
+        const response = await mongodb.getDb().db().collection('person').insertOne(person);
+    if (response.acknowledged) {
+        res.status(201).json(response || 'Person created successfully');
+    } else {
+        res.status(500).json(response.error || 'Some error occurred while creating the person.');
     };
-    car
-        .save(person)
-        .then((data) => {
-            res.send(data);
-        })
-        .catch((err) => {
-            res.status(500).send({
-                message:
-                    err.message || 'Some error occurred while creating the car.',
-            });
-        });
+});
 };
 //rest client function
 const updatePerson = async (req, res) => {
