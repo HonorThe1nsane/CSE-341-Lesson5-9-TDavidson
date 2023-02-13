@@ -86,19 +86,19 @@ exports.getSingleData = (req, res) => {
 // rest client
 const createNewPerson = async (req, res) => {
     personValidation(req, res, async () => {
-    const person = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        birthday: req.body.birthday
-    };
-    const response = await mongodb.getDb().db().collection('person').insertOne(person);
-    if (response.acknowledged) {
-        res.status(201).json(response || 'Person created successfully');
-    } else {
-        res.status(500).json(response.error || 'Some error occurred while creating the person.');
-    };
-});
+        const person = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            birthday: req.body.birthday
+        };
+        const response = await mongodb.getDb().db().collection('person').insertOne(person);
+        if (response.acknowledged) {
+            res.status(201).json(response || 'Person created successfully');
+        } else {
+            res.status(500).json(response.error || 'Some error occurred while creating the person.');
+        };
+    });
 };
 //work with swagger
 exports.createNewPerson = (req, res) => {
@@ -110,12 +110,12 @@ exports.createNewPerson = (req, res) => {
             birthday: req.body.birthday
         };
         const response = await mongodb.getDb().db().collection('person').insertOne(person);
-    if (response.acknowledged) {
-        res.status(201).json(response || 'Person created successfully');
-    } else {
-        res.status(500).json(response.error || 'Some error occurred while creating the person.');
-    };
-});
+        if (response.acknowledged) {
+            res.status(201).json(response || 'Person created successfully');
+        } else {
+            res.status(500).json(response.error || 'Some error occurred while creating the person.');
+        };
+    });
 };
 //rest client function
 const updatePerson = async (req, res) => {
