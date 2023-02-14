@@ -16,8 +16,8 @@ POST http://localhost:8080/cars HTTP/1.1
 content-type: application/json
 
 {
-        "carMake": "",
-        "carModel": ""  ,
+        "carMake": "Ford",
+        "carModel": "Mustang"  ,
         "engineSize": "170 cu in (2.8 L)",
         "color": "Blue",
         "year": "1969",
@@ -30,13 +30,13 @@ POST http://localhost:8080/person HTTP/1.1
 content-type: application/json
 
 {
-        "firstName": "Dennis",
-        "lastName": "Davidson",
-        "email": "dad@test.com",
-        "birthday": "12/17/1980"
+        "firstName": "",
+        "lastName": "",
+        "email": "",
+        "birthday": ""
 }
 
-### PUT cars
+### PUT cars update
 PUT http://localhost:8080/cars/634a3883807a38278e2408c9 HTTP/1.1
 content-type: application/json
 
@@ -44,18 +44,18 @@ content-type: application/json
         "carMake": "Ford",
         "carModel": "Bronco II",
         "engineSize": "170 cu in (2.8 L)",
-        "color": "Maroon",
+        "color": "Brown",
         "year": "1966",
         "price": "44900"
 }
 
-### PUT person
-PUT http://localhost:8080/person/634b1f3d807a38278e2408d7 HTTP/1.1
+### PUT person update
+PUT http://localhost:8080/person/634a3883807a38278e2408c9 HTTP/1.1
 content-type: application/json
 
 {
 
-        "firstName": "",
+        "firstName": "Harmony",
         "lastName": "Davidson",
         "email": "dad@test.com",
         "birthday": "12/17/1980"

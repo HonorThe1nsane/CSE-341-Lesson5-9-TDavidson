@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const carsController = require('../controllers/cars');
-const carsValidation = require('../controllers/validation');
-
-// import carsValidation from '../controllers/validation';
 
 
 // GET /feed/posts

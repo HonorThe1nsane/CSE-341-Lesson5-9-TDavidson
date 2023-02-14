@@ -94,9 +94,12 @@ const createNewPerson = async (req, res) => {
         };
         const response = await mongodb.getDb().db().collection('person').insertOne(person);
         if (response.acknowledged) {
-            res.status(201).json(response || 'Person created successfully');
+            res.status(201).json(response);
+            console.log("Person added successfully");
         } else {
-            res.status(500).json(response.error || 'Some error occurred while creating the person.');
+            res.status(500).json(response.error)
+            console.log("There was an error adding the person");
+            return;
         };
     });
 };
@@ -111,9 +114,9 @@ exports.createNewPerson = (req, res) => {
         };
         const response = await mongodb.getDb().db().collection('person').insertOne(person);
         if (response.acknowledged) {
-            res.status(201).json(response || 'Person created successfully');
+            res.status(201).json(response).send({ message: 'Person created successfully!' });
         } else {
-            res.status(500).json(response.error || 'Some error occurred while creating the person.');
+            res.status(500).json(response.error).send({ message: 'Error creating person!' });
         };
     });
 };
@@ -134,9 +137,10 @@ const updatePerson = async (req, res) => {
     const response = await mongodb.getDb().db().collection('person').replaceOne({ _id: userId }, person);
     console.log(response);
     if (response.modifiedCount > 0) {
-        res.status(204).send();
+        res.status(204).send('You updated successfully');
     } else {
-        res.status(500).json(response.error || 'Some error occurred while updating the person in Hot-cars.');
+        res.status(500).json(response.error);
+        console.log(response.error);
     }
 };
 //swagger
@@ -173,7 +177,7 @@ const deletePerson = async (req, res) => {
     if (response.deletedCount > 0) {
         res.status(204).send();
     } else {
-        res.status(500).json(response.error || 'Some error occurred while deleting the person.');
+        res.status(500).json(response.error).send({ message: 'Could not delete person with id=' + userId });
     }
 };
 

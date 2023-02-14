@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const personController = require('../controllers/person');
+// const personValidation = require('./validation');
 // import { personValidation } from '../controllers/validation';
 // const personValidation = require('../controllers/validation');
 

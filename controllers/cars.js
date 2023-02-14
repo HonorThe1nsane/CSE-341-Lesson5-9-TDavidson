@@ -101,9 +101,11 @@ const createNewCar = async (req, res) => {
 
         const response = await mongodb.getDb().db().collection('cars').insertOne(car);
         if (response.acknowledged) {
-            res.status(201).json(response || 'Car created successfully');
+            res.status(201).json(response);
+            console.log("Car added successfully");
         } else {
-            res.status(500).json(response.error || 'Some error occurred while creating the car.');
+            res.status(500).json(response.error)
+            console.log("Car not added, error: " + response.error);
         }
     });
 };
@@ -121,9 +123,9 @@ exports.createNewCar = (req, res) => {
 
         const response = await mongodb.getDb().db().collection('cars').insertOne(car);
         if (response.acknowledged) {
-            res.status(201).json(response || 'Car created successfully');
+            res.status(201).json(response, 'Car created successfully');
         } else {
-            res.status(500).json(response.error || 'Some error occurred while creating the car.');
+            res.status(500).json(response.error,'Some error occurred while creating the car.');
         }
     });
 };
@@ -146,9 +148,9 @@ const updateCar = async (req, res) => {
     const response = await mongodb.getDb().db().collection('cars').replaceOne({ _id: userId }, car);
     console.log(response);
     if (response.modifiedCount > 0) {
-        res.status(204).send();
+        res.status(204).send('Car updated successfully');
     } else {
-        res.status(500).json(response.error || 'Some error occurred while updating the car in Hot-cars.');
+        res.status(500).json(response.error, 'Some error occurred while updating the car in Hot-cars.');
     }
 };
 //swagger
