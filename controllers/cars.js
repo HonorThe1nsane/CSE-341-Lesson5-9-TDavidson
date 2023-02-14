@@ -1,16 +1,12 @@
 
 const ObjectId = require('mongodb').ObjectId;
 
-
-
 const mongodb = require('../db/connect');
-const { car } = require('../models');
+// const { car } = require('../models');
 const { carValidation } = require('./validation');
-
 
 const db = require('../models');
 const Car = db.car;
-
 const apiKey = 'KZ9u3ZO4cT5W3nf6HnZc17aYwskqCymnVpqSqo32JJYx3qFqXsCOlwxZXKnSbHDK';
 
 

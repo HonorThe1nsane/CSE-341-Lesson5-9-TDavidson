@@ -26,9 +26,13 @@ const carValidation = (req, res, next) => {
 const personValidation = (req, res, next) => {
 
     check('firstName', 'First Name is required').not().isEmpty().trim().escape();
+    console.log( `"${param}" First name checked`);
     check('lastName', 'Last Name is required').not().isEmpty().trim().escape();
+    console.log('Last name checked');
     check('email', 'Email is required').not().isEmpty().trim().escape();
+    console.log('Email checked');
     check('birthday', 'Birthday is required').not().isEmpty().trim().escape();
+    console.log('Birthday checked');
 
     check(req.body, 'Request body cannot be empty').not().isEmpty();
     const errors = validationResult(req);
