@@ -10,8 +10,8 @@ const carValidation = (req, res, next) => {
     console.log('carModel has been validated');
     check('engineSize', 'Engine size is required').not().isEmpty().trim().escape();
     console.log('engineSize has been validated');
-    check('favoriteColor', 'Color is required').not().isEmpty().trim().escape();
-    console.log('favoriteColor has been validated');
+    check('color', 'Color is required').not().isEmpty().trim().escape();
+    console.log('color has been validated');
     check('year', 'Year is required').not().isEmpty().trim().escape();
     console.log('Year has been validated');
     check('price', 'Price is required').not().isEmpty().trim().escape();
