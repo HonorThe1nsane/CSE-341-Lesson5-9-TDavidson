@@ -85,7 +85,7 @@ exports.getSingleData = (req, res) => {
 };
 // rest client
 const createNewPerson = async (req, res) => {
-    personValidation(req, res, async () => {
+
         const person = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -101,11 +101,10 @@ const createNewPerson = async (req, res) => {
             console.log("There was an error adding the person");
             return;
         };
-    });
 };
+
 //work with swagger
-exports.createNewPerson = (req, res) => {
-    personValidation(req, res, async () => {
+exports.createNewPerson = async (req, res) => {
         const person = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -118,8 +117,7 @@ exports.createNewPerson = (req, res) => {
         } else {
             res.status(500).json(response.error).send({ message: 'Error creating person!' });
         };
-    });
-};
+    };
 //rest client function
 const updatePerson = async (req, res) => {
     if (!req.body) {
