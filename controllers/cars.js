@@ -85,45 +85,44 @@ exports.getSingleData = (req, res) => {
 };
 // rest client
 const createNewCar = async (req, res) => {
-    carValidation(req, res, async () => {
-        const car = {
-            carMake: req.body.carMake,
-            carModel: req.body.carModel,
-            engineSize: req.body.engineSize,
-            favoriteColor: req.body.favoriteColor,
-            year: req.body.year,
-            price: req.body.price
-        };
+    const car = {
+        carMake: req.body.carMake,
+        carModel: req.body.carModel,
+        engineSize: req.body.engineSize,
+        favoriteColor: req.body.favoriteColor,
+        year: req.body.year,
+        price: req.body.price
+    };
 
-        const response = await mongodb.getDb().db().collection('cars').insertOne(car);
-        if (response.acknowledged) {
-            res.status(201).json(response);
-            console.log("Car added successfully");
-        } else {
-            res.status(500).json(response.error)
-            console.log("Car not added, error: " + response.error);
-        }
-    });
+    const response = await mongodb.getDb().db().collection('cars').insertOne(car);
+    if (response.acknowledged) {
+        res.status(201).json(response);
+        console.log("Car added successfully");
+    } else {
+        res.status(500).json(response.error)
+        console.log("Car not added, error: " + response.error);
+    }
+    console.log(response);
+    // res.status(201).json(response);
+    // console.log("Car added successfully");
 };
 //work with swagger
-exports.createNewCar = (req, res) => {
-    carValidation(req, res, async () => {
-        const car = {
-            carMake: req.body.carMake,
-            carModel: req.body.carModel,
-            engineSize: req.body.engineSize,
-            favoriteColor: req.body.favoriteColor,
-            year: req.body.year,
-            price: req.body.price
-        };
+exports.createNewCar = async (req, res) => {
+    const car = {
+        carMake: req.body.carMake,
+        carModel: req.body.carModel,
+        engineSize: req.body.engineSize,
+        favoriteColor: req.body.favoriteColor,
+        year: req.body.year,
+        price: req.body.price
+    };
 
-        const response = await mongodb.getDb().db().collection('cars').insertOne(car);
-        if (response.acknowledged) {
-            res.status(201).json(response, 'Car created successfully');
-        } else {
-            res.status(500).json(response.error,'Some error occurred while creating the car.');
-        }
-    });
+    const response = await mongodb.getDb().db().collection('cars').insertOne(car);
+    if (response.acknowledged) {
+        res.status(201).json(response, 'Car created successfully');
+    } else {
+        res.status(500).json(response.error, 'Some error occurred while creating the car.');
+    }
 };
 //rest client function
 const updateCar = async (req, res) => {
