@@ -71,7 +71,7 @@ exports.getSingleData = (req, res) => {
                 if (!data)
                     res
                         .status(404)
-                        .send({ message: 'No car person with id ' + id });
+                        .send({ message: 'No person with id ' + id });
                 else res.send(data[0]);
             })
             .catch((err) => {

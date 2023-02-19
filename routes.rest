@@ -63,10 +63,10 @@ content-type: application/json
 
 }
 ### DELETE car
-DELETE http://localhost:8080/cars/634a3883807a38278e2408c9 HTTP/1.1
+DELETE http://localhost:8080/cars/63ea975ae7f4266cb0bc072d HTTP/1.1
 
 #### DELETE person
-DELETE http://localhost:8080/person/634b39237b249f67844184ba HTTP/1.1
+DELETE http://localhost:8080/person/63eacae92dedd82cd33f252b HTTP/1.1
 
 
 
