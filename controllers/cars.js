@@ -89,7 +89,7 @@ const createNewCar = async (req, res) => {
         carMake: req.body.carMake,
         carModel: req.body.carModel,
         engineSize: req.body.engineSize,
-        favoriteColor: req.body.favoriteColor,
+        color: req.body.color,
         year: req.body.year,
         price: req.body.price
     };
@@ -112,7 +112,7 @@ exports.createNewCar = async (req, res) => {
         carMake: req.body.carMake,
         carModel: req.body.carModel,
         engineSize: req.body.engineSize,
-        favoriteColor: req.body.favoriteColor,
+        color: req.body.color,
         year: req.body.year,
         price: req.body.price
     };
@@ -136,7 +136,7 @@ const updateCar = async (req, res) => {
         carMake: req.body.carMake,
         carModel: req.body.carModel,
         engineSize: req.body.engineSize,
-        favoriteColor: req.body.favoriteColor,
+        color: req.body.color,
         year: req.body.year,
         price: req.body.price
     };

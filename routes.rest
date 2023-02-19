@@ -17,7 +17,7 @@ content-type: application/json
 
 {
         "carMake": "Ford",
-        "carModel": "Mustang"  ,
+        "carModel": "Mustang New"  ,
         "engineSize": "170 cu in (2.8 L)",
         "color": "Blue",
         "year": "1969",
@@ -30,10 +30,10 @@ POST http://localhost:8080/person HTTP/1.1
 content-type: application/json
 
 {
-        "firstName": "",
-        "lastName": "",
-        "email": "",
-        "birthday": ""
+        "firstName": "Troy",
+        "lastName": "Davidson",
+        "email": "coolDude@gmail.com",
+        "birthday": "01/01/1970"
 }
 
 ### PUT cars update
@@ -66,7 +66,7 @@ content-type: application/json
 DELETE http://localhost:8080/cars/63ea975ae7f4266cb0bc072d HTTP/1.1
 
 #### DELETE person
-DELETE http://localhost:8080/person/63eacae92dedd82cd33f252b HTTP/1.1
+DELETE http://localhost:8080/person/63eff280a6e3efd387f970c9 HTTP/1.1
 
 
 
