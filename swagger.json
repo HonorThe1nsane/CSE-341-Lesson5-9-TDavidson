@@ -10,6 +10,31 @@
     "schemes": [
         "http"
     ],
+    "components": {
+        "securitySchemes": {
+            "oauth2": {
+                "type": "oauth2",
+                "flows": {
+                    "authorizationCode": {
+                        "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+                        "tokenUrl": "https://provider.com/oauth2/token",
+                        "scopes": {
+                            "read": "Read access",
+                            "write": "Write access"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        {
+            "oauth2": [
+                "read",
+                "write"
+            ]
+        }
+    ],
     "paths": {
         "/api-docs": {
             "get": {

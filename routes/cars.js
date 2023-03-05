@@ -6,7 +6,7 @@ const { check, validationResult } = require('express-validator');
 
 // GET /feed/posts
 
-router.get('/', carsController.getData);
+router.get('/protected', carsController.getData);
 
 router.get('/:id', carsController.getSingleData);
 
