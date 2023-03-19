@@ -6,11 +6,9 @@ const { check, validationResult } = require('express-validator');
 
 // GET /feed/posts
 
-router.get('/protected', carsController.getData);
+router.get('/', carsController.getData);
 
 router.get('/:id', carsController.getSingleData);
-
-// router.post('/', carsController.createNewCar);
 
 router.post('/', [
     check('carMake', 'Car make is required').not().isEmpty().trim().escape(),
@@ -28,10 +26,9 @@ router.post('/', [
     carsController.createNewCar(req, res)
 });
 
-
 router.put('/:id', carsController.updateCar);
 
 router.delete('/:id', carsController.deleteCar);
-// localhost:8080
+
 module.exports = router;
 

@@ -4,11 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 const cors = require('cors');
 require('dotenv').config();
 
-const createError = require('http-errors');
 const express = require('express');
-const path = require('path');
-// const utils = require('./utils');
-const { auth, requiresAuth } = require('express-openid-connect');
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -16,65 +12,72 @@ const app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
+const { OAuth2Client } = require('google-auth-library');
+const axios = require('axios');
+const { auth } = require('express-openid-connect');
+
+// Create a new OAuth2Client instance
+const oAuth2Client = new OAuth2Client(
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET,
+    process.env.GOOGLE_OAUTH_REDIRECT_URL
+);
+
+const config = {
+    authRequired: false,
+    auth0Logout: true,
+    secret: process.env.GOOGLE_CLIENT_SECRET,
+    baseURL: `http://localhost:8080`,
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    issuerBaseURL: process.env.GOOGLE_OAUTH_REDIRECT_URL
+};
+
+
+const authUrl = oAuth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: process.env.SCOPES,
+});
+
+
+
+// Redirect the user to the authentication URL
+app.get('/login', (req, res) => {
+    res.redirect(authUrl);
+});
+
+// Exchange the authorization code for an access token
+// app.get('/oauth2callback', async (req, res) => {
+//     const { code } = req.query;
+
+//     try {
+//         const { tokens } = await oAuth2Client.getToken(code);
+//         oAuth2Client.setCredentials(tokens);
+
+//         // Use the access token to make API requests
+//         const response = await axios.get('https://www.googleapis.com/drive/v3/files', {
+//             headers: { Authorization: `Bearer ${oAuth2Client.credentials.access_token}` },
+//         });
+
+//         console.log(response.data);
+//         res.send(response.data);
+//     } catch (error) {
+//         console.error(error);
+//         res.send('Error!');
+//     }
+// });
+
+
 app
+    .use(auth(config))
     .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
     .use(cors())
     .use(express.json())
     .use(express.urlencoded({ extended: true }))
-    .use('/', require('./routes'));
-
-app.use(bodyParser.json())
     .use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
     })
     .use('/', require('./routes'));
-
-const config = {
-    authRequired: false,
-    auth0Logout: true,
-    secret: process.env.CLIENT_APP_SECRET,
-    baseURL: process.env.BASE_URL,
-    clientID: process.env.CLIENT_APP_ID,
-    issuerBaseURL: process.env.ISSUER_BASE_URL,
-
-    // Add the following configuration options for OAuth 2.0 authentication
-    authorizationParams: {
-        response_type: 'code'
-    },
-    authorizationParamsExtra: {
-        // Add any extra parameters required by your OAuth provider
-    },
-    scope: 'openid profile email', // The scope of the access token
-    routes: {
-        // Configure the route handlers for handling the OAuth callbacks
-        login: false,
-        callback: {
-            path: '/callback',
-            callback: async (req, res, next) => {
-                try {
-                    const { user } = await req.openidTokens();
-                    req.session.accessToken = user.access_token;
-                    req.session.refreshToken = user.refresh_token;
-                    req.session.expiresAt = Date.now() + user.expires_in * 1000;
-                    res.redirect('/');
-                } catch (err) {
-                    next(err);
-                }
-            },
-            complete: false
-        },
-        logout: false
-    }
-};
-
-// Attach the auth router
-app.use(auth(config));
-
-// Use the `requiresAuth` middleware to protect a route that requires authentication
-app.get('/profile', requiresAuth(), (req, res) => {
-    res.send(JSON.stringify(req.oidc.user));
-});
 
 mongodb.initDb((err, mongodb) => {
     if (err) {
