@@ -96,7 +96,7 @@ content-type: application/json
 
 
 ### PUT cars
-PUT https://cse-341-personal-assignments-troy-d.onrender.com/cars/633b860bf1ca7e3a1f473ae6 HTTP/1.1
+PUT https://cse-341-personal-assignments-troy-d.onrender.com/cars/646805f4ec1405dfffe5bd5d HTTP/1.1
 content-type: application/json
 
 {
@@ -105,5 +105,5 @@ content-type: application/json
         "engineSize": "170 cu in (2.8 L)",
         "color": "Grey",
         "year": "1969",
-        "price": "24673"
+        "price": "25000"
 }
