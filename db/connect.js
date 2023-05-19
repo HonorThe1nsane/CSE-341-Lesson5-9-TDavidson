@@ -1,4 +1,4 @@
-const dotenv = require('dotenv');
+//connection to database
 dotenv.config();
 const MongoClient = require('mongodb').MongoClient;
 

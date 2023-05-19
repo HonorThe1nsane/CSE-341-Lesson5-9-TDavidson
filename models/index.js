@@ -1,3 +1,4 @@
+// Index to models
 const dbConfig = require('../db/connect.js');
 
 const mongoose = require('mongoose');

@@ -3,7 +3,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 const mongodb = require('../db/connect');
 const { person } = require('../models');
-const { personValidation } = require('./validation');
+
 
 
 const db = require('../models');
@@ -83,6 +83,7 @@ exports.getSingleData = (req, res) => {
         res.send('Invalid apiKey, please read the documentation.');
     }
 };
+
 // rest client
 const createNewPerson = async (req, res) => {
 

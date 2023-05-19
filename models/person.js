@@ -1,3 +1,4 @@
+//Person model
 module.exports = (mongoose) => {
     const Person = mongoose.model(
         'person',

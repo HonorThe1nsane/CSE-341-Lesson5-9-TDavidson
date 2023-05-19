@@ -1,3 +1,4 @@
+//cars model
 module.exports = (mongoose) => {
     const Car = mongoose.model(
         'car',
