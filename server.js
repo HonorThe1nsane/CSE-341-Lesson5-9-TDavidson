@@ -14,7 +14,6 @@ const swaggerDocument = require('./swagger.json');
 
 
 app
-    .use(auth(config))
     .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
     .use(cors())
     .use(express.json())

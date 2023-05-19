@@ -178,4 +178,4 @@ exports.update = (req, res) => {
 
 
 
-module.exports = { getSingleData, getData, createNewCar, updateCar, deleteCar };
+module.exports = { getSingleData, getData, createNewCar, updateCar };

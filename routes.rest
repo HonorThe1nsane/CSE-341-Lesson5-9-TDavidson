@@ -62,11 +62,7 @@ content-type: application/json
 
 
 }
-### DELETE car
-DELETE http://localhost:8080/cars/63ea975ae7f4266cb0bc072d HTTP/1.1
 
-#### DELETE person
-DELETE http://localhost:8080/person/63eff280a6e3efd387f970c9 HTTP/1.1
 
 
 
@@ -111,5 +107,3 @@ content-type: application/json
         "year": "1969",
         "price": "24673"
 }
-### DELETE cars
-DELETE https://cse-341-personal-assignments-troy-d.onrender.com/cars/633b844a2ffdf3c327b3dc9c HTTP/1.1

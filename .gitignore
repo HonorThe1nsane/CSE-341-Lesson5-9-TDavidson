@@ -167,3 +167,34 @@ dist
 #from routes.index import
 # const { auth, requiresAuth } = require('express-openid-connect');
 # const requiresAuthMiddleware = require('../requireAuth');
+
+##from person routes
+# const { check, validationResult } = require('express-validator');
+#from routes cars
+# router.post('/', [
+#     check('carMake', 'Car make is required').not().isEmpty().trim().escape(),
+#     check('carModel', 'Car model is required').not().isEmpty().trim().escape(),
+#     check('engineSize', 'Engine size is required').not().isEmpty().trim().escape(),
+#     check('color', 'Color is required').not().isEmpty().trim().escape(),
+#     check('year', 'Year is required').not().isEmpty().trim().escape(),
+#     check('price', 'Price is required').not().isEmpty().trim().escape()
+# ], (req, res) => {
+#     const errors = validationResult(req);
+#     if (!errors.isEmpty()) {
+#         console.log(errors.array());
+#         return res.status(400).json({ errors: errors.array() });
+#     }
+#     carsController.createNewCar(req, res)
+# });
+
+# router.delete('/:id', carsController.deleteCar);
+# # ### DELETE car
+# DELETE http://localhost:8080/cars/63ea975ae7f4266cb0bc072d HTTP/1.1
+
+# #### DELETE person
+# DELETE http://localhost:8080/person/63eff280a6e3efd387f970c9 HTTP/1.1
+
+# ### DELETE cars
+# DELETE https://cse-341-personal-assignments-troy-d.onrender.com/cars/633b844a2ffdf3c327b3dc9c HTTP/1.1
+
+# router.delete('/:id', personController.deletePerson);
