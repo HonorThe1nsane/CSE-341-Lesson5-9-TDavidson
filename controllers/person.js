@@ -168,43 +168,8 @@ exports.update = (req, res) => {
 };
 
 
-//Rest client
-const deletePerson = async (req, res) => {
-    const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db().collection('person').remove({ _id: userId }, true);
-    console.log(response);
-    if (response.deletedCount > 0) {
-        res.status(204).send();
-    } else {
-        res.status(500).json(response.error).send({ message: 'Could not delete person with id=' + userId });
-    }
-};
-
-// Swagger
-
-// Delete a Temple with the specified id in the request
-exports.delete = (req, res) => {
-    const id = req.params.id;
-
-    Person.findByIdAndRemove(id)
-        .then((data) => {
-            if (!data) {
-                res.status(404).send({
-                    message: `Cannot delete Person with id=${id}. Maybe the car was not found!`,
-                });
-            } else {
-                res.send({
-                    message: 'Person was deleted successfully!',
-                });
-            }
-        })
-        .catch((err) => {
-            res.status(500).send({
-                message: 'Could not delete Person with id=' + id,
-            });
-        });
-};
 
 
 
-module.exports = { getSingleData, getData, createNewPerson, updatePerson, deletePerson };
+
+module.exports = { getSingleData, getData, createNewPerson, updatePerson };

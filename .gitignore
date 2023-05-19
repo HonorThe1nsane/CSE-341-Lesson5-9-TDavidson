@@ -198,3 +198,41 @@ dist
 # DELETE https://cse-341-personal-assignments-troy-d.onrender.com/cars/633b844a2ffdf3c327b3dc9c HTTP/1.1
 
 # router.delete('/:id', personController.deletePerson);
+
+
+# //Rest client
+# const deletePerson = async (req, res) => {
+#     const userId = new ObjectId(req.params.id);
+#     const response = await mongodb.getDb().db().collection('person').remove({ _id: userId }, true);
+#     console.log(response);
+#     if (response.deletedCount > 0) {
+#         res.status(204).send();
+#     } else {
+#         res.status(500).json(response.error).send({ message: 'Could not delete person with id=' + userId });
+#     }
+# };
+
+# // Swagger
+
+# // Delete a Temple with the specified id in the request
+# exports.delete = (req, res) => {
+#     const id = req.params.id;
+
+#     Person.findByIdAndRemove(id)
+#         .then((data) => {
+#             if (!data) {
+#                 res.status(404).send({
+#                     message: `Cannot delete Person with id=${id}. Maybe the car was not found!`,
+#                 });
+#             } else {
+#                 res.send({
+#                     message: 'Person was deleted successfully!',
+#                 });
+#             }
+#         })
+#         .catch((err) => {
+#             res.status(500).send({
+#                 message: 'Could not delete Person with id=' + id,
+#             });
+#         });
+# };
