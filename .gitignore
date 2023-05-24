@@ -109,43 +109,7 @@ dist
 
 
 ################################################################
-#For cars controller
-# //Rest client
-# const deleteCar = async (req, res) => {
-#     const userId = new ObjectId(req.params.id);
-#     const response = await mongodb.getDb().db().collection('cars').remove({ _id: userId }, true);
-#     console.log(response);
-#     if (response.deletedCount > 0) {
-#         res.status(204).send();
-#     } else {
-#         res.status(500).json(response.error || 'Some error occurred while deleting the car.');
-#     }
-# };
 
-# // Swagger
-
-# // Delete a Car with the specified id in the request
-# exports.delete = (req, res) => {
-#     const id = req.params.id;
-
-#     Cars.findByIdAndRemove(id)
-#         .then((data) => {
-#             if (!data) {
-#                 res.status(404).send({
-#                     message: `Cannot delete Car with id=${id}. Maybe the car was not found!`,
-#                 });
-#             } else {
-#                 res.send({
-#                     message: 'Car was deleted successfully!',
-#                 });
-#             }
-#         })
-#         .catch((err) => {
-#             res.status(500).send({
-#                 message: 'Could not delete Car with id=' + id,
-#             });
-#         });
-# };
 ################################################################
 #For cars routes
 # router.post('/', [
@@ -168,71 +132,3 @@ dist
 # const { auth, requiresAuth } = require('express-openid-connect');
 # const requiresAuthMiddleware = require('../requireAuth');
 
-##from person routes
-# const { check, validationResult } = require('express-validator');
-#from routes cars
-# router.post('/', [
-#     check('carMake', 'Car make is required').not().isEmpty().trim().escape(),
-#     check('carModel', 'Car model is required').not().isEmpty().trim().escape(),
-#     check('engineSize', 'Engine size is required').not().isEmpty().trim().escape(),
-#     check('color', 'Color is required').not().isEmpty().trim().escape(),
-#     check('year', 'Year is required').not().isEmpty().trim().escape(),
-#     check('price', 'Price is required').not().isEmpty().trim().escape()
-# ], (req, res) => {
-#     const errors = validationResult(req);
-#     if (!errors.isEmpty()) {
-#         console.log(errors.array());
-#         return res.status(400).json({ errors: errors.array() });
-#     }
-#     carsController.createNewCar(req, res)
-# });
-
-# router.delete('/:id', carsController.deleteCar);
-# # ### DELETE car
-# DELETE http://localhost:8080/cars/63ea975ae7f4266cb0bc072d HTTP/1.1
-
-# #### DELETE person
-# DELETE http://localhost:8080/person/63eff280a6e3efd387f970c9 HTTP/1.1
-
-# ### DELETE cars
-# DELETE https://cse-341-personal-assignments-troy-d.onrender.com/cars/633b844a2ffdf3c327b3dc9c HTTP/1.1
-
-# router.delete('/:id', personController.deletePerson);
-
-
-# //Rest client
-# const deletePerson = async (req, res) => {
-#     const userId = new ObjectId(req.params.id);
-#     const response = await mongodb.getDb().db().collection('person').remove({ _id: userId }, true);
-#     console.log(response);
-#     if (response.deletedCount > 0) {
-#         res.status(204).send();
-#     } else {
-#         res.status(500).json(response.error).send({ message: 'Could not delete person with id=' + userId });
-#     }
-# };
-
-# // Swagger
-
-# // Delete a Temple with the specified id in the request
-# exports.delete = (req, res) => {
-#     const id = req.params.id;
-
-#     Person.findByIdAndRemove(id)
-#         .then((data) => {
-#             if (!data) {
-#                 res.status(404).send({
-#                     message: `Cannot delete Person with id=${id}. Maybe the car was not found!`,
-#                 });
-#             } else {
-#                 res.send({
-#                     message: 'Person was deleted successfully!',
-#                 });
-#             }
-#         })
-#         .catch((err) => {
-#             res.status(500).send({
-#                 message: 'Could not delete Person with id=' + id,
-#             });
-#         });
-# };

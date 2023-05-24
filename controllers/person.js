@@ -9,7 +9,7 @@ const { person } = require('../models');
 const db = require('../models');
 const Person = db.person;
 
-const apiKey = 'KZ9u3ZO4cT5W3nf6HnZc17aYwskqCymnVpqSqo32JJYx3qFqXsCOlwxZXKnSbHDK';
+const apiKey = process.env.API_KEY;
 
 
 const getData = async (req, res) => {
@@ -167,9 +167,43 @@ exports.update = (req, res) => {
         });
 };
 
+// Delete a person
+
+const deletePerson = async (req, res) => {
+    const userId = new ObjectId(req.params.id);
+    const response = await mongodb.getDb().db().collection('person').remove({ _id: userId }, true);
+    console.log(response);
+    if (response.deletedCount > 0) {
+        res.status(204).send();
+    } else {
+        res.status(500).json(response.error).send({ message: 'Could not delete person with id=' + userId });
+    }
+};
+
+//swagger delete
+exports.delete = (req, res) => {
+    const id = req.params.id;
+
+    Person.findByIdAndRemove(id)
+        .then((data) => {
+            if (!data) {
+                res.status(404).send({
+                    message: `Cannot delete Person with id=${id}. The person was not found!`,
+                });
+            } else {
+                res.send({
+                    message: 'Person was deleted successfully!',
+                });
+            }
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: 'Unexpected error occurred. Could not delete Person with id=' + id,
+            });
+        });
+};
 
 
 
 
-
-module.exports = { getSingleData, getData, createNewPerson, updatePerson };
+module.exports = { getSingleData, getData, createNewPerson, updatePerson, deletePerson };

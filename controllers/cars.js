@@ -5,7 +5,9 @@ const mongodb = require('../db/connect');
 
 const db = require('../models');
 const Car = db.car;
-const apiKey = 'KZ9u3ZO4cT5W3nf6HnZc17aYwskqCymnVpqSqo32JJYx3qFqXsCOlwxZXKnSbHDK';
+
+const apiKey = process.env.API_KEY;
+
 
 
 const getData = async (req, res) => {
@@ -101,9 +103,8 @@ const createNewCar = async (req, res) => {
         console.log("Car not added, error: " + response.error);
     }
     console.log(response);
-    // res.status(201).json(response);
-    // console.log("Car added successfully");
 };
+
 //work with swagger
 exports.createNewCar = async (req, res) => {
     const car = {
@@ -173,9 +174,42 @@ exports.update = (req, res) => {
 
 
 
+//Rest client
+const deleteCar = async (req, res) => {
+    const userId = new ObjectId(req.params.id);
+    const response = await mongodb.getDb().db().collection('cars').remove({ _id: userId }, true);
+    console.log(response);
+    if (response.deletedCount > 0) {
+        res.status(204).send();
+    } else {
+        res.status(500).json(response.error || 'An error occurred while deleting the car.');
+    }
+};
+
+// Swagger
+
+// Delete a Car with the specified id in the request
+exports.delete = (req, res) => {
+    const id = req.params.id;
+
+    Cars.findByIdAndRemove(id)
+        .then((data) => {
+            if (!data) {
+                res.status(404).send({
+                    message: `Cannot delete Car with id=${id}. The car was not found!`,
+                });
+            } else {
+                res.send({
+                    message: 'Car was deleted successfully!',
+                });
+            }
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: 'Could not delete Car with id=' + id,
+            });
+        });
+};
 
 
-
-
-
-module.exports = { getSingleData, getData, createNewCar, updateCar };
+module.exports = { getSingleData, getData, createNewCar, updateCar, deleteCar };
