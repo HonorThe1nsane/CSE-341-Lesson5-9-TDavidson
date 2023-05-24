@@ -17,7 +17,7 @@ content-type: application/json
 
 {
         "carMake": "Ford",
-        "carModel": "Mustang New"  ,
+        "carModel": "Mustang"  ,
         "engineSize": "170 cu in (2.8 L)",
         "color": "Blue",
         "year": "1969",
