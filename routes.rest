@@ -96,7 +96,7 @@ content-type: application/json
 
 
 ### PUT cars
-PUT https://cse-341-personal-assignments-troy-d.onrender.com/cars/6472c0126617b0c591438985 HTTP/1.1
+PUT https://webbackend-l5-9.onrender.com/cars/6472c0126617b0c591438985 HTTP/1.1
 content-type: application/json
 
 {
