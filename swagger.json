@@ -10,36 +10,17 @@
     "schemes": [
         "http"
     ],
-    "components": {
-        "securitySchemes": {
-            "oauth2": {
-                "type": "oauth2",
-                "flows": {
-                    "authorizationCode": {
-                        "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
-                        "tokenUrl": "https://google.com/oauth2/token",
-                        "scopes": {
-                            "read": "Read access",
-                            "write": "Write access"
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "security": [
-        {
-            "oauth2": [
-                "read",
-                "write"
-            ]
-        }
-    ],
     "paths": {
         "/api-docs": {
             "get": {
                 "description": "",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
                 "responses": {}
             }
         },
@@ -73,6 +54,9 @@
                 "description": "",
                 "parameters": [
                     {
+                        "name": "apiKey",
+                        "in": "header",
+                        "type": "string",
                         "name": "body",
                         "in": "body",
                         "schema": {
@@ -148,7 +132,6 @@
                 ]
             },
             "put": {
-
                 "description": "",
                 "parameters": [
                     {
@@ -163,16 +146,22 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "firstName": {
+                                "carMake": {
                                     "example": "any"
                                 },
-                                "lastName": {
+                                "carModel": {
                                     "example": "any"
                                 },
-                                "email": {
+                                "engineSize": {
                                     "example": "any"
                                 },
-                                "birthday": {
+                                "color": {
+                                    "example": "any"
+                                },
+                                "year": {
+                                    "example": "any"
+                                },
+                                "price": {
                                     "example": "any"
                                 }
                             }
@@ -207,6 +196,176 @@
                     }
                 }
             }
+        },
+        "/person/": {
+            "get": {
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "description": "POST person",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "example": "any"
+                                },
+                                "lastName": {
+                                    "example": "any"
+                                },
+                                "birthday": {
+                                    "example": "any"
+                                },
+                                "email": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/person/{id}": {
+            "get": {
+                "description": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "apiKey",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2": [
+                            "read"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "apiKey",
+                        "in": "header",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "example": "any"
+                                },
+                                "lastName": {
+                                    "example": "any"
+                                },
+                                "birthday": {
+                                    "example": "any"
+                                },
+                                "email": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "apiKey",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
         }
+    },
+    "get": {
+        "description": "Get People",
+        "parameters": [
+            {
+                "name": "apiKey",
+                "in": "header",
+                "type": "string"
+            }
+        ],
+        "responses": {}
     }
 }

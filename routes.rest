@@ -96,12 +96,12 @@ content-type: application/json
 
 
 ### PUT cars
-PUT https://cse-341-personal-assignments-troy-d.onrender.com/cars/646805f4ec1405dfffe5bd5d HTTP/1.1
+PUT https://cse-341-personal-assignments-troy-d.onrender.com/cars/6472c0126617b0c591438985 HTTP/1.1
 content-type: application/json
 
 {
         "carMake": "Dodge",
-        "carModel": "Challenger",
+        "carModel": "Changer",
         "engineSize": "170 cu in (2.8 L)",
         "color": "Grey",
         "year": "1969",
