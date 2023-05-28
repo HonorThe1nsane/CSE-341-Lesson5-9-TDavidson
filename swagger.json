@@ -56,7 +56,9 @@
                     {
                         "name": "apiKey",
                         "in": "header",
-                        "type": "string",
+                        "type": "string"
+                    },
+                    {
                         "name": "body",
                         "in": "body",
                         "schema": {

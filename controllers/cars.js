@@ -125,9 +125,9 @@ exports.createNewCar = async (req, res) => {
 };
 //rest client function
 const updateCar = async (req, res) => {
-    if (req.body) {
+    if (!req.body) {
         return res.status(400).send({
-            message: 'Data to update can not be empty!',
+            message: 'Data to update cannot be empty!',
         });
     }
     const userId = new ObjectId(req.params.id);
@@ -144,9 +144,10 @@ const updateCar = async (req, res) => {
     if (response.modifiedCount > 0) {
         res.status(204).send('Car updated successfully');
     } else {
-        res.status(500).json(response.error, 'Some error occurred while updating the car in Hot-cars.');
+        res.status(500).json({ error: 'Some error occurred while updating the car in Hot-cars.' });
     }
 };
+
 //swagger
 exports.update = (req, res) => {
     if (!req.body) {
