@@ -10,6 +10,18 @@
     "schemes": [
         "http"
     ],
+    "securityDefinitions": {
+        "oauth2": {
+            "type": "oauth2",
+            "flow": "accessCode",
+            "authorizationUrl": "http://localhost:8080/api-docs/",
+            "tokenUrl": "https://oauth2.googleapis.com/token",
+            "scopes": {
+                "read": "Grants read-only access",
+                "write": "Grants write access"
+            }
+        }
+    },
     "paths": {
         "/api-docs": {
             "get": {

@@ -1,7 +1,7 @@
 {
   "name": "rest-practice",
   "version": "1.0.0",
-  "description": "",
+  "description": "Lessons 5 - 9 Project",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,17 +19,20 @@
     "express-openid-connect": "^2.12.1",
     "express-validator": "^6.14.3",
     "google-auth-library": "^8.7.0",
+    "googleapis": "^118.0.0",
     "joi": "^17.7.1",
     "jsonwebtoken": "^9.0.0",
     "lint": "^1.1.2",
     "mongodb": "^4.10.0",
     "mongoose": "^6.6.5",
     "nodemon": "^2.0.20",
+    "oauth2orize": "^1.11.1",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
+    "passport-http-bearer": "^1.0.1",
     "passport-oauth2": "^1.7.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^4.6.2"
+    "swagger-ui-express": "^4.6.3"
   },
   "devDependencies": {
     "eslint": "^8.24.0",
@@ -37,5 +40,14 @@
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.7.1",
     "swagger-autogen": "^2.22.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HonorThe1nsane/CSE-341-Lesson5-9-TDavidson.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/HonorThe1nsane/CSE-341-Lesson5-9-TDavidson/issues"
+  },
+  "homepage": "https://github.com/HonorThe1nsane/CSE-341-Lesson5-9-TDavidson#readme"
 }

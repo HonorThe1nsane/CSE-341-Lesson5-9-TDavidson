@@ -109,4 +109,4 @@ content-type: application/json
 }
 
 ###Delete car
-DELETE https://webbackend-l5-9.onrender.com/6472c0126617b0c591438985 HTTP/1.1
+DELETE https://webbackend-l5-9.onrender.com/cars/6472c0126617b0c591438985 HTTP/1.1
