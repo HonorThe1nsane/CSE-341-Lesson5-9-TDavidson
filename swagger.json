@@ -14,7 +14,7 @@
         "oauth2": {
             "type": "oauth2",
             "flow": "accessCode",
-            "authorizationUrl": "http://localhost:8080/api-docs/",
+            "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
             "tokenUrl": "https://oauth2.googleapis.com/token",
             "scopes": {
                 "read": "Grants read-only access",
